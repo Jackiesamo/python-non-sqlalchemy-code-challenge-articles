@@ -90,6 +90,11 @@ class Author:
         self.title = title
         Article.all.append(self)
 
+    @property
+    def title(self):
+        return self._title
+
+
     
     
           
