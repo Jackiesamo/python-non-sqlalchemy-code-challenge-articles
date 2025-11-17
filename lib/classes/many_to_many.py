@@ -66,6 +66,20 @@ class Author:
 
     def articles(self):
         return [article for article in Article.all if article.magazine == self]
+    def contributors(self):
+        return list({article.author for article in self.articles()})
+
+    def article_titles(self):
+        titles = [article.title for article in self.articles()]
+        return titles if titles else None
+
+    def contributing_authors(self):
+        authors = [
+            author
+            for author in self.contributors()
+            if len([a for a in self.articles() if a.author == author]) > 2
+        ]
+        return authors if authors else None
     
     
           
