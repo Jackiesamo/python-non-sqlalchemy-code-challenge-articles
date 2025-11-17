@@ -93,6 +93,16 @@ class Author:
     @property
     def title(self):
         return self._title
+    
+    @title.setter
+    def title(self, value):
+        if hasattr(self, "_title"):
+            return
+        if not isinstance(value, str):
+            return
+        if not (5 <= len(value) <= 50):
+            return
+        self._title = value
 
 
     
