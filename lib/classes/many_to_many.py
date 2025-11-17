@@ -33,6 +33,41 @@ class Author:
 
     def topic_areas(self):
         topics = {mag.category for mag in self.magazines()}
-        return list(topics) if topics else None       
+        return list(topics) if topics else None 
+    
+    class Magazine:
+     def _init_(self, name, category):
+        self.name = name
+        self.category = category
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str):
+            return
+        if not (2 <= len(value) <= 16):
+            return
+        self._name = value
+
+    @property
+    def category(self):
+        return self._category
+
+    @category.setter
+    def category(self, value):
+        if not isinstance(value, str):
+            return
+        if len(value) == 0:
+            return
+        self._category = value
+
+    def articles(self):
+        return [article for article in Article.all if article.magazine == self]
+    
+    
+          
 
 
