@@ -1,11 +1,12 @@
+
 class Article:
-    def _init_(self, author, magazine, title):
+    def __init__(self, author, magazine, title):
         self.author = author
         self.magazine = magazine
         self.title = title
-
+        
 class Author:
-    def _init_(self, name):
+    def __init__(self, name):
         self.name = name
 
     @property
@@ -33,10 +34,11 @@ class Author:
 
     def topic_areas(self):
         topics = {mag.category for mag in self.magazines()}
-        return list(topics) if topics else None 
-    
-    class Magazine:
-     def _init_(self, name, category):
+        return list(topics) if topics else None
+
+
+class Magazine:
+    def __init__(self, name, category):
         self.name = name
         self.category = category
 
@@ -66,6 +68,7 @@ class Author:
 
     def articles(self):
         return [article for article in Article.all if article.magazine == self]
+
     def contributors(self):
         return list({article.author for article in self.articles()})
 
@@ -80,11 +83,12 @@ class Author:
             if len([a for a in self.articles() if a.author == author]) > 2
         ]
         return authors if authors else None
-    
-    class Article:
-     all = []
 
-    def _init_(self, author, magazine, title):
+
+class Article:
+    all = []
+
+    def __init__(self, author, magazine, title):
         self.author = author
         self.magazine = magazine
         self.title = title
@@ -93,7 +97,7 @@ class Author:
     @property
     def title(self):
         return self._title
-    
+
     @title.setter
     def title(self, value):
         if hasattr(self, "_title"):
@@ -103,10 +107,3 @@ class Author:
         if not (5 <= len(value) <= 50):
             return
         self._title = value
-
-
-    
-    
-          
-
-
